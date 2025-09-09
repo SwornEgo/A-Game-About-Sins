@@ -1,0 +1,18 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BarController : MonoBehaviour
+{
+    [SerializeField] private Slider slider;
+
+    public void UpdateBar(float currentValue, float maxValue)
+    {
+        slider.value = currentValue / maxValue;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+}
