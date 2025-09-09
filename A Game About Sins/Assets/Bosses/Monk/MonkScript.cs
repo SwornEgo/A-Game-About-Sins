@@ -1,37 +1,26 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MonkScript : MonoBehaviour
 {
     // Constants
-    private const String DEFAULT = "default",
-                         START = "opening",
-                         BETWEEN = "between",
-
-                         SLAM = "slam",
-                         SHOCK = "shockwave",
-                         SPEW = "spew",
-                         BEAM = "beam",
-                         RELEASE = "release";
-    private String[] possibleStates = { BETWEEN, SLAM, SHOCK, SPEW, BEAM };
+    public enum States { BETWEEN, SLAM, SHOCK, SPEW, BEAM };
+    [SerializeField] private States _state;
+    public Animator animator;
 
     // Public Variables
     public int test;
-    public float test_speed;
-    public float test_max_speed;
-    public float test_timer;
+    public float test_speed, test_max_speed, test_timer;
     public GameObject player;
     public Camera gameCamera;
     public TextAsset textPatterns;
 
     /// Projectiles
-    public GameObject targetProjectile;
-    public GameObject gravityProjectile;
-    public GameObject beam;
+    public GameObject targetProjectile, gravityProjectile, beam;
 
     // Private Variables
-    public string state;
     public int stage = 1;
     public int glidePos;
     private float timer = 0;
@@ -106,24 +95,24 @@ public class MonkScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (state)
+        switch (_state)
         {
-            case DEFAULT:
-                state = BETWEEN;
+            default:
+                _state = States.BETWEEN;
                 break;
-            case BETWEEN:
+            case States.BETWEEN:
                 between_attacks();
                 break;
-            case SLAM:
+            case States.SLAM:
                 attack_SlamPlayer();
                 break;
-            case SHOCK:
+            case States.SHOCK:
                 attack_ShockWaveLeft();
                 break;
-            case SPEW:
+            case States.SPEW:
                 attack_Spew();
                 break;
-            case BEAM:
+            case States.BEAM:
                 attack_Beams();
                 break;
         }
@@ -197,7 +186,7 @@ public class MonkScript : MonoBehaviour
                 else
                 {
                     stage = 0;
-                    state = possibleStates[randattack];
+                    _state = (States)randattack;
                 }
 
                 break;
@@ -267,7 +256,7 @@ public class MonkScript : MonoBehaviour
 
                 if (timer <= 0)
                 {
-                    state = BETWEEN;
+                    _state = States.BETWEEN;
                     stage = 0;
                 }
                 break;
@@ -348,7 +337,7 @@ public class MonkScript : MonoBehaviour
                 stage += 1;
                 break;
             case 6:
-                state = BETWEEN;
+                _state = States.BETWEEN;
                 stage = 0;
                 break;
         }
@@ -392,7 +381,7 @@ public class MonkScript : MonoBehaviour
                 break;
 
             case 3:
-                state = BETWEEN;
+                _state = States.BETWEEN;
                 stage = 0;
                 timer = 0;
                 counter = 0;
@@ -428,7 +417,7 @@ public class MonkScript : MonoBehaviour
             case 2:
                 if (timer <= 0)
                 {
-                    state = BETWEEN;
+                    _state = States.BETWEEN;
                     stage = 0;
                     timer = 0;
                     counter = 0;

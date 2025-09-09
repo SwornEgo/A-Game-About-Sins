@@ -9,7 +9,8 @@ using NUnit.Framework.Constraints;
 
 public class PlayerScript : MonoBehaviour
 {
-    public enum state { overworld, combat, cutscene, death } 
+    public enum State { overworld, combat, cutscene, death } 
+    [SerializeField] private State _state;
 
     public Animator animator;
 
