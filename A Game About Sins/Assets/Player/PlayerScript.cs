@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     public enum State { overworld, combat, cutscene, death } 
     [SerializeField] private State _state;
 
-    public Animator animator;
+    public Animator animatorController;
 
     // Direction Constants
     private const string UP = "Up";
@@ -85,7 +85,7 @@ public class PlayerScript : MonoBehaviour
                                          player.transform.position.z
                                          );
             direction = UP;
-            animator.SetTrigger(UP);
+            animatorController.SetTrigger(UP);
 
             if (checkTile(projectedPoint))
             {
@@ -103,7 +103,7 @@ public class PlayerScript : MonoBehaviour
                                          player.transform.position.z
                                          );
             direction = LEFT;
-            animator.SetTrigger(LEFT);
+            animatorController.SetTrigger(LEFT);
 
             if (checkTile(projectedPoint))
             {
@@ -120,7 +120,7 @@ public class PlayerScript : MonoBehaviour
                                          player.transform.position.z
                                          );
             direction = DOWN;
-            animator.SetTrigger(DOWN);
+            animatorController.SetTrigger(DOWN);
 
             if (checkTile(projectedPoint))
             {
@@ -137,7 +137,7 @@ public class PlayerScript : MonoBehaviour
                                          player.transform.position.z
                                          );
             direction = RIGHT;
-            animator.SetTrigger(RIGHT);
+            animatorController.SetTrigger(RIGHT);
 
             if (checkTile(projectedPoint))
             {
@@ -252,7 +252,7 @@ public class PlayerScript : MonoBehaviour
             projectedPoint = newPoint;
             movement = movement * 2;
             dashTimer = dashTime;
-            animator.SetTrigger(DashAnimation);
+            animatorController.SetTrigger(DashAnimation);
         }
     }
 
@@ -290,9 +290,9 @@ public class PlayerScript : MonoBehaviour
 
     public void triggerReset()
     {
-        animator.ResetTrigger(UP);
-        animator.ResetTrigger(DOWN);
-        animator.ResetTrigger(LEFT);
-        animator.ResetTrigger(RIGHT);
+        animatorController.ResetTrigger(UP);
+        animatorController.ResetTrigger(DOWN);
+        animatorController.ResetTrigger(LEFT);
+        animatorController.ResetTrigger(RIGHT);
     }
 }

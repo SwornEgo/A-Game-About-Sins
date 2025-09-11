@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: 0
-  animator: {fileID: 0}
+  animatorController: {fileID: 783036823}
   test: 5
   test_speed: 0
   test_max_speed: 0
@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa5b94e3ef34e44787f4b5e9eb98d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
 --- !u!114 &783036820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2292,6 +2293,10 @@ PrefabInstance:
       propertyPath: gameCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8686498443044584448, guid: c2e6cfaba2932df4089cd0ff4a03a302, type: 3}
+      propertyPath: animatorController
+      value: 
+      objectReference: {fileID: 4268301222976391610}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2357,6 +2362,11 @@ PrefabInstance:
 --- !u!1 &4268301222976391609 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5434987198801617176, guid: c2e6cfaba2932df4089cd0ff4a03a302, type: 3}
+  m_PrefabInstance: {fileID: 1320175932358966032}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4268301222976391610 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8055556639882664857, guid: c2e6cfaba2932df4089cd0ff4a03a302, type: 3}
   m_PrefabInstance: {fileID: 1320175932358966032}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6104643002477687606

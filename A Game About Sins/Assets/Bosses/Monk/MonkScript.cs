@@ -8,7 +8,7 @@ public class MonkScript : MonoBehaviour
     // Constants
     public enum States { BETWEEN, SLAM, SHOCK, SPEW, BEAM };
     [SerializeField] private States _state;
-    public Animator animator;
+    public Animator animatorController;
 
     // Public Variables
     public int test;
@@ -23,9 +23,8 @@ public class MonkScript : MonoBehaviour
     // Private Variables
     public int stage = 1;
     public int glidePos;
-    private float timer = 0;
+    private float timer = 0, attackTimer = 0;
     private int counter = 0;
-    private float attackTimer = 0;
     private int direction = 1;
     private float distance = 0;
     private Vector2 startingPos;
@@ -117,6 +116,7 @@ public class MonkScript : MonoBehaviour
                 break;
         }
 
+        animate();
     }
 
     private void between_attacks()
@@ -484,5 +484,31 @@ public class MonkScript : MonoBehaviour
         }
 
         return velocity;
+    }
+
+    private void animate()
+    {
+
+        if (player.transform.position.x > gameObject.transform.position.x + 0.25)
+        {
+            animatorController.SetTrigger("IdleR");
+        }
+        else if (player.transform.position.x < gameObject.transform.position.x - 0.25)
+        {
+            animatorController.SetTrigger("IdleL");
+        }
+
+        if (_state == States.BETWEEN)
+        {
+
+        }
+    }
+    
+    public void triggerReset()
+    {
+        animatorController.ResetTrigger("IdleR");
+        animatorController.ResetTrigger("IdleL");
+        animatorController.ResetTrigger("AttackR");
+        animatorController.ResetTrigger("AttackL");
     }
 }
