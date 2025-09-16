@@ -6,6 +6,7 @@ using UnityEngine;
 public class CombatScript : MonoBehaviour
 {
     public GameObject tile;
+    public Sprite[] tiles;
 
     // Board
     public float spacing;
@@ -55,9 +56,11 @@ public class CombatScript : MonoBehaviour
             {
                 if (line[0] == '1')
                 {
+                    int x = UnityEngine.Random.Range(0, tiles.Length);
                     GameObject tempTile = Instantiate(tile, new Vector3(column * spacing + startingPos.x,
-                                                                    row * spacing + startingPos.y - tileOffsetY,
-                                                                    0), Quaternion.identity, gameObject.transform);
+                                                                        row * spacing + startingPos.y - tileOffsetY,
+                                                                        0), Quaternion.identity, gameObject.transform);
+                    tempTile.GetComponent<SpriteRenderer>().sprite = tiles[x];
                     gameBoard[row, column] = tempTile;
                     typeBoard[row, column] = TILE;
                 }
